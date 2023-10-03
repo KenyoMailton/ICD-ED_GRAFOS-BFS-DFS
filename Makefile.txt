@@ -1,0 +1,21 @@
+# Makefile for Python project
+
+PYTHON = python3
+SRC_FILES = graph.py main.py
+TEST_FILES = pcv4.txt pcv10.txt pcv50.txt pcv177.txt
+
+all: run
+
+run: $(SRC_FILES) $(TEST_FILES)
+	$(PYTHON) main.py
+
+clean:
+	rm -rf __pycache__ *.pyc
+
+distclean: clean
+	rm -rf *.txt
+
+install_python:
+	@command -v $(PYTHON) >/dev/null 2>&1 || { echo "Python 3 is not installed. Installing..."; sudo apt-get update && sudo apt-get install python3 -y; }
+
+.PHONY: all run clean distclean install_python
